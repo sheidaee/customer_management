@@ -1,0 +1,22 @@
+.EditBtn {
+  cursor: pointer;
+  margin-left: .8rem;
+}
+
+.formCaption {
+  margin-bottom: 1rem;
+}
+
+.formData {
+  padding-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.row > div {
+  flex-basis: 45%;
+}

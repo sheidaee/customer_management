@@ -1,0 +1,22 @@
+div.SearchBar {
+  background-color: #f5f5f5;
+}
+
+.formRow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.formRow div {
+  flex: 0 1 25rem;
+}
+
+.formCaption,
+.formRow {
+  margin-bottom: 2.4rem;
+}
+
+.actionBar {
+  text-align: center;
+}
