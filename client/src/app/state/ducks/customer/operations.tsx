@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import matchSorter from "match-sorter";
-import * as moment from "moment";
+import moment from "moment";
+import { Dispatch } from 'redux'
 
 import {
   addCustomerComplete,
@@ -13,12 +14,12 @@ import {
 
 import { default as axios } from "../../../utilities/axios-customer";
 
-const fetchList = () => dispatch => {    
+const fetchList = () => (dispatch: Dispatch) => {    
     dispatch(fetchInit());
     axios
     .get("/customers")
-    .then(response => {      
-        dispatch(fetchListComplete(response.data));
+    .then(response => {                  
+      dispatch(fetchListComplete(response.data));
     })
     .catch(error => {
         console.log('error');        
@@ -26,12 +27,12 @@ const fetchList = () => dispatch => {
 };
 
 const addCustomer = (
-  first,
-  last,
-  gender,
-  birthday,
-  customerLifetimeValue
-) => dispatch => {
+  first: string,
+  last: string,
+  gender: string,
+  birthday: string,
+  customerLifetimeValue: number
+) => (dispatch: Dispatch) => {
   return Promise.resolve(
     axios
       .post("/customers", {
@@ -51,13 +52,13 @@ const addCustomer = (
 };
 
 const editCustomer = (
-  customerID,
-  first,
-  last,
-  gender,
-  birthday,  
-  customerLifetimeValue
-) => dispatch => {
+  customerID: number,
+  first: string,
+  last: string,
+  gender: string,
+  birthday: string,  
+  customerLifetimeValue: number
+) => (dispatch: Dispatch) => {
   return Promise.resolve(
     axios
       .put(
@@ -86,7 +87,7 @@ const editCustomer = (
   );  
 };
 
-const deleteCustomer = customerID => dispatch => {
+const deleteCustomer = (customerID: number) => (dispatch: Dispatch) => {
   return Promise.resolve(
     axios
       .delete(`/customers/${customerID}`)
@@ -100,15 +101,15 @@ const deleteCustomer = customerID => dispatch => {
 };
 
 const searchCustomer = (
-  customerRecords,
-  firstName,
-  lastName,
-  birthday
-) => dispatch => {
+  customerRecords: [],
+  firstName: string,
+  lastName: string,
+  birthday: string
+) => (dispatch: Dispatch) => {
   let filteredRecords = _.cloneDeep(customerRecords);
   
   if (!_.isNull(firstName)) {
-    filteredRecords = matchSorter(
+    filteredRecords: [] = matchSorter(
       filteredRecords,
       firstName,
       {
@@ -119,7 +120,7 @@ const searchCustomer = (
   }
 
   if (!_.isNull(lastName)) {
-    filteredRecords = matchSorter(
+    filteredRecords: [] = matchSorter(
       filteredRecords,
       lastName,
       {
@@ -130,7 +131,7 @@ const searchCustomer = (
   }
 
   if (!_.isNull(birthday)) {
-    filteredRecords = matchSorter(
+    filteredRecords: [] = matchSorter(
       filteredRecords,
       moment(birthday).format("YYYY-MM-DD"),
       {

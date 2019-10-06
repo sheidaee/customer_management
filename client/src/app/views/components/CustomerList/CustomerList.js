@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactTable, { ReactTableDefaults } from "react-table";
 import { connect } from "react-redux";
+
 import moment from 'moment';
 
 import "react-table/react-table.css";
