@@ -18,13 +18,6 @@ export const fetchInit = () =>
 export const fetchListComplete = (records: []) =>
   action(customerActionTypes.FETCH_LIST_COMPLETED, { records });
 
-// export const fetchListComplete = records => ({
-//   type: types.FETCH_LIST_COMPLETED,
-//   payload: {
-//     records
-//   }
-// });
-
 export const editCustomerComplete = (
   customerID: number,
   firstName: string,

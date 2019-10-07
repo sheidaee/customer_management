@@ -95,14 +95,12 @@ const reducer: Reducer<customerState> = createReducer(initialState)({
     state: customerState,
     action: any
   ) => {
-    console.log(action);
-    
     return updateObject(state, {
       customers: action.payload.records,
       error: false,
       loading: false,
       didSearch: false
-    })
+    });
   },
 
   [customerActionTypes.ADD_CUSTOMER_COMPLETED]: (
