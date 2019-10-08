@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button, Card, Elevation } from "@blueprintjs/core";
 
 import DateInputField from "../../components/UI/DateInputField";
@@ -9,10 +9,8 @@ import { customerOperations } from "../../../state/ducks/customer";
 import Styles from "./SearchBar.module.scss";
 import SearchField from "./SearchField/SearchField";
 
-function SearchBar(props: any) {
+function SearchBar({ loading, customerRecords }: any) {
   const dispatch = useDispatch();
-  const loading = useSelector(({ app }: any) => app.loading);
-  const customerRecords = useSelector(({ app }: any) => app.customers);
 
   const [firstName, lastName, birthday, handleChange] = useSearch();
 
