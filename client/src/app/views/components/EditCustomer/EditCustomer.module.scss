@@ -1,6 +1,10 @@
+.EditCustomer {
+  padding: 1.4rem;
+}
+
 .EditBtn {
   cursor: pointer;
-  margin-left: .8rem;
+  margin-left: 0.8rem;
 }
 
 .formCaption {
@@ -19,4 +23,8 @@
 
 .row > div {
   flex-basis: 45%;
+}
+
+.actionBar button:not(:last-child) {
+  margin-right: 1rem;
 }

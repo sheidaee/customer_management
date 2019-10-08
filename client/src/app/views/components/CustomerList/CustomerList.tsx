@@ -25,10 +25,30 @@ function CustomerList() {
 
   if (customerStateRecords) {
     customerStateRecords.forEach((customerRecord: any) => {
+      const {
+        customerID,
+        name: { first, last },
+        gender,
+        birthday,
+        lastContact,
+        customerLifetimeValue
+      } = customerRecord;
+
       const operation = (
         <>
           <CustomerDetails data={customerRecord} />
-          {/* <EditCustomer data={customerRecord} /> */}
+          <EditCustomer
+            data={customerRecord}
+            initialValues={{
+              customerID,
+              firstName: first,
+              lastName: last,
+              gender,
+              birthday: new Date(birthday),
+              lastContact: new Date(lastContact),
+              customerLifetimeValue
+            }}
+          />
           {/* <DeleteCustomer data={customerRecord} /> */}
         </>
       );
