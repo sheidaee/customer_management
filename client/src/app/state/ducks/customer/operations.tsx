@@ -89,16 +89,17 @@ const editCustomer = (
 };
 
 const deleteCustomer = (customerID: number) => (dispatch: Dispatch) => {
-  return Promise.resolve(
-    axios
-      .delete(`/customers/${customerID}`)
-      .then(response => {
-        dispatch(deleteCustomerComplete(customerID));
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  );
+  // return Promise.resolve(
+
+  return axios
+    .delete(`/customers/${customerID}`)
+    .then(response => {
+      dispatch(deleteCustomerComplete(customerID));
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  // );
 };
 
 const searchCustomer = (

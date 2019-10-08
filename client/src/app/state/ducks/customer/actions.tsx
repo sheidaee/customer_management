@@ -76,7 +76,7 @@ export const addCustomerComplete = (customer: object) =>
 // });
 
 export const deleteCustomerComplete = (customerID: number) =>
-  action(customerActionTypes.DELETE_CUSTOMER_COMPLETED, customerID);
+  action(customerActionTypes.DELETE_CUSTOMER_COMPLETED, { customerID });
 
 // export const deleteCustomerComplete = customerID => ({
 //   type: types.DELETE_CUSTOMER_COMPLETED,

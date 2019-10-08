@@ -49,7 +49,7 @@ function CustomerList() {
               customerLifetimeValue
             }}
           />
-          {/* <DeleteCustomer data={customerRecord} /> */}
+          <DeleteCustomer data={customerRecord} />
         </>
       );
 
