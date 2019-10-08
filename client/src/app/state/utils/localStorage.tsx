@@ -13,7 +13,11 @@ export const loadState = () => {
   }
 }
 
-export const saveState = (state) => {
+type customers = {
+  customers: [];
+}
+
+export const saveState = (state: customers) => {
   try {
     const serializedState = JSON.stringify(state)
     localStorage.setItem('state', serializedState)

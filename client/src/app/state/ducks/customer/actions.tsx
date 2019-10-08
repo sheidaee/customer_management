@@ -65,8 +65,8 @@ export const editCustomerComplete = (
 //   }
 // });
 
-export const addCustomerComplete = (customer: []) =>
-  action(customerActionTypes.ADD_CUSTOMER_COMPLETED, customer);
+export const addCustomerComplete = (customer: object) =>
+  action(customerActionTypes.ADD_CUSTOMER_COMPLETED, { customer });
 
 // export const addCustomerComplete = customer => ({
 //   type: types.ADD_CUSTOMER_COMPLETED,
@@ -86,7 +86,7 @@ export const deleteCustomerComplete = (customerID: number) =>
 // });
 
 export const searchListComplete = (customers: []) =>
-  action(customerActionTypes.SEARCH_LIST_COMPLETED, customers);
+  action(customerActionTypes.SEARCH_LIST_COMPLETED, { customers });
 
 // export const searchListComplete = customers => ({
 //   type: types.SEARCH_LIST_COMPLETED,
