@@ -1,6 +1,7 @@
 import React from "react";
 import ReactTable, { ReactTableDefaults } from "react-table";
 import moment from "moment";
+import { tableProps } from "./types";
 
 import "react-table/react-table.css";
 
@@ -50,11 +51,6 @@ const tdPropsHandler = (
     }
   };
 };
-
-interface tableProps {
-  data: [];
-  loading: boolean;
-}
 
 const CustomerTable = ({ data, loading }: tableProps) => {
   Object.assign(ReactTableDefaults, {

@@ -1,24 +1,34 @@
 import React, { Component } from "react";
 import { Button, Dialog, Intent } from "@blueprintjs/core";
-import IconEl from '../IconEl';
+import IconEl from "../IconEl";
 
-const DialogBox = (WrappedComponent, dialogProps) => {
+const DialogBox = (WrappedComponent: any, dialogProps: any) => {
   return class extends Component {
     state = { isOpen: false };
 
-    toggleDialog = (callback = null) => {
+    toggleDialog = (callback: any = null) => {
       this.setState({ isOpen: !this.state.isOpen });
       if (typeof callback === "function") callback();
     };
 
-    submitHandler = (callback = null) => {
+    submitHandler = (callback: any = null) => {
       if (typeof callback === "function") callback(this.toggleDialog);
     };
 
-    render() {            
-      let dialogToggleBtn = <Button onClick={() => this.toggleDialog(dialogProps.showDialogBtnHandler)} {...dialogProps.btn} />;
+    render() {
+      let dialogToggleBtn = (
+        <Button
+          onClick={() => this.toggleDialog(dialogProps.showDialogBtnHandler)}
+          {...dialogProps.btn}
+        />
+      );
       if (dialogProps.btn.type === "icon") {
-        dialogToggleBtn = <IconEl onClick={() => this.toggleDialog(dialogProps.showDialogBtnHandler)} {...dialogProps.btn} />;
+        dialogToggleBtn = (
+          <IconEl
+            onClick={() => this.toggleDialog(dialogProps.showDialogBtnHandler)}
+            {...dialogProps.btn}
+          />
+        );
       }
       return (
         <React.Fragment>
@@ -33,7 +43,8 @@ const DialogBox = (WrappedComponent, dialogProps) => {
               <WrappedComponent
                 {...this.props}
                 dialogCloseHandler={this.toggleDialog}
-                dialogSubmitHandler={this.submitHandler} />
+                dialogSubmitHandler={this.submitHandler}
+              />
             </div>
             {!dialogProps.customOperationBtn && (
               <div className="pt-dialog-footer">
@@ -43,7 +54,9 @@ const DialogBox = (WrappedComponent, dialogProps) => {
                     text="save"
                     intent={Intent.PRIMARY}
                     {...dialogProps.submitBtn}
-                    onClick={() => this.submitHandler(dialogProps.saveBtnHandler)}
+                    onClick={() =>
+                      this.submitHandler(dialogProps.saveBtnHandler)
+                    }
                   />
                 </div>
               </div>
@@ -52,7 +65,7 @@ const DialogBox = (WrappedComponent, dialogProps) => {
         </React.Fragment>
       );
     }
-  }
-}
+  };
+};
 
 export default DialogBox;

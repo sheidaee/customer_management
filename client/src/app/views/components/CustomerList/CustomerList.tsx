@@ -24,13 +24,13 @@ function CustomerList() {
     customerRecords != null && !didSearch ? customerRecords : searchedRecords;
 
   if (customerStateRecords) {
-    customerStateRecords.forEach((customerRecord: []) => {
+    customerStateRecords.forEach((customerRecord: any) => {
       const operation = (
-        <React.Fragment>
+        <>
           <CustomerDetails data={customerRecord} />
-          <EditCustomer data={customerRecord} />
-          <DeleteCustomer data={customerRecord} />
-        </React.Fragment>
+          {/* <EditCustomer data={customerRecord} /> */}
+          {/* <DeleteCustomer data={customerRecord} /> */}
+        </>
       );
 
       data.push({
