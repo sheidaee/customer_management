@@ -85,7 +85,7 @@ export const deleteCustomerComplete = (customerID: number) =>
 //   }
 // });
 
-export const searchListComplete = (customers: []) =>
+export const searchListComplete = (customers: any[]) =>
   action(customerActionTypes.SEARCH_LIST_COMPLETED, { customers });
 
 // export const searchListComplete = customers => ({

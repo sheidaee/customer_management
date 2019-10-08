@@ -24,7 +24,7 @@ function CustomerList() {
     customerRecords != null && !didSearch ? customerRecords : searchedRecords;
 
   if (customerStateRecords) {
-    customerRecords.forEach((customerRecord: []) => {
+    customerStateRecords.forEach((customerRecord: []) => {
       const operation = (
         <React.Fragment>
           <CustomerDetails data={customerRecord} />

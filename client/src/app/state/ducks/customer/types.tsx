@@ -17,6 +17,7 @@ export enum customerActionTypes {
 // https://github.com/piotrwitek/react-redux-typescript-guide#state-with-type-level-immutability
 export interface customerState {
   readonly customers: [] | null;
+  readonly searchedRecords: [] | null;
   readonly loading: boolean;
   readonly didSearch: boolean;
 }

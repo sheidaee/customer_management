@@ -21,6 +21,7 @@ import { updateObject } from "../../../utilities";
 // Type-safe initialState!
 const initialState: customerState = {
   customers: null,
+  searchedRecords: null,
   loading: false,
   didSearch: false
 };

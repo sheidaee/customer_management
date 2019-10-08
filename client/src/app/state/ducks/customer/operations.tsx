@@ -107,27 +107,31 @@ const searchCustomer = (
   lastName: string,
   birthday: string
 ) => (dispatch: Dispatch) => {
-  let filteredRecords = _.cloneDeep(customerRecords);
+  let filteredRecords: any[] = _.cloneDeep(customerRecords);
 
   if (!_.isNull(firstName)) {
-    [] = matchSorter(filteredRecords, firstName, {
+    filteredRecords = matchSorter(filteredRecords, firstName, {
       keys: ["name.first"],
       threshold: matchSorter.rankings.CONTAINS
     });
   }
 
   if (!_.isNull(lastName)) {
-    [] = matchSorter(filteredRecords, lastName, {
+    filteredRecords = matchSorter(filteredRecords, lastName, {
       keys: ["name.last"],
       threshold: matchSorter.rankings.CONTAINS
     });
   }
 
-  if (!_.isNull(birthday)) {
-    [] = matchSorter(filteredRecords, moment(birthday).format("YYYY-MM-DD"), {
-      keys: ["birthday"],
-      threshold: matchSorter.rankings.CONTAINS
-    });
+  if (birthday) {
+    filteredRecords = matchSorter(
+      filteredRecords,
+      moment(birthday).format("YYYY-MM-DD"),
+      {
+        keys: ["birthday"],
+        threshold: matchSorter.rankings.CONTAINS
+      }
+    );
   }
 
   dispatch(searchListComplete(filteredRecords));
