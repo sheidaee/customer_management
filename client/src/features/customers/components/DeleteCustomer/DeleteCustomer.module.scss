@@ -1,0 +1,18 @@
+.DeleteBtn {
+  cursor: pointer;
+  margin-left: 0.8rem;
+}
+
+.DeleteCustomer {
+  font-size: 1.5rem;
+  padding: 1.4rem;
+}
+
+.row,
+.singleRow {
+  margin-bottom: 1.4rem;
+}
+
+.actionBar button:not(:last-child) {
+  margin-right: 1rem;
+}

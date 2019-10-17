@@ -1,0 +1,27 @@
+.ViewBtn {
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  :not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.row div {
+  flex-basis: 50%;
+}
+
+.Customer {
+  font-size: 1.5rem;
+  padding: 1.4rem;
+}
+
+.row,
+.singleRow {
+  margin-bottom: 2rem;
+}

@@ -5,6 +5,7 @@
   "dependencies": {
     "@blueprintjs/core": "^3.18.1",
     "@blueprintjs/datetime": "^3.13.0",
+    "@blueprintjs/icons": "^3.11.0",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.11",
     "@types/react": "^16.9.5",
@@ -24,10 +25,12 @@
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.4",
     "redux-form": "^8.2.6",
+    "redux-observable": "^1.2.0",
     "redux-thunk": "^2.3.0",
     "sinon": "^7.5.0",
     "typesafe-actions": "^4.4.2",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "utility-types": "^3.8.0"
   },
   "scripts": {
     "start": "set PORT=3001 && react-scripts start",

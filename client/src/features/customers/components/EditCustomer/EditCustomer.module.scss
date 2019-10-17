@@ -1,0 +1,34 @@
+.EditCustomer {
+  padding: 1.4rem;
+}
+
+.EditBtn {
+  cursor: pointer;
+  margin-left: 0.8rem;
+}
+
+.formCaption {
+  margin-bottom: 1rem;
+}
+
+.formData {
+  padding-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  :not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  & > div {
+    flex-basis: 45%;
+  }
+}
+
+.actionBar button:not(:last-child) {
+  margin-right: 1rem;
+}
