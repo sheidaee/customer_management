@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../../../hooks/react-redux.hooks";
 import { Field, reduxForm } from "redux-form";
 import { Button, Intent } from "@blueprintjs/core";
 
@@ -82,7 +82,7 @@ const options = [
  *
  */
 
-function AddCustomer(props: FormProps) {
+export function AddCustomer(props: FormProps) {
   const dispatch = useDispatch();
 
   const loading = useSelector(({ app }: any) => app.loading);
@@ -178,7 +178,7 @@ function AddCustomer(props: FormProps) {
   );
 }
 
-const AddCustomerC = reduxForm({
+export const AddCustomerF = reduxForm({
   form: "AddCustomer",
   initialValues: {
     first: "",
@@ -190,4 +190,4 @@ const AddCustomerC = reduxForm({
   validate
 })(AddCustomer);
 
-export default DialogBox(AddCustomerC, dialogProps);
+export default DialogBox(AddCustomerF, dialogProps);

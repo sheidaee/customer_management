@@ -8,7 +8,7 @@ import Styles from "./Panel.module.scss";
  * Displays current date, total number of customers add customer button
  *
  */
-function Panel({ customersCount = 0 }) {
+export function Panel({ customersCount = 0 }) {
   return (
     <div className={Styles.Panel}>
       <div className={Styles.date}>{moment().format("MMM Do YY")}</div>

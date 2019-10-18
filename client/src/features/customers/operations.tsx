@@ -110,6 +110,8 @@ const searchCustomer = ({
     return;
   }
 
+  dispatch(fetchInit());
+
   let filteredRecords: CustomerObject[] = _.cloneDeep(customerRecords);
 
   if (!_.isNull(first)) {
@@ -137,7 +139,9 @@ const searchCustomer = ({
     );
   }
 
-  dispatch(searchListComplete(filteredRecords));
+  setTimeout(() => {
+    dispatch(searchListComplete(filteredRecords));
+  }, 500);
 };
 
 export { fetchList, deleteCustomer, editCustomer, addCustomer, searchCustomer };

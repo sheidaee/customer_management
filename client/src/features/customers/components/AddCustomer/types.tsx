@@ -12,10 +12,12 @@ export interface FormValues {
 
 export type AddCustomerP = Omit<FormValues, "customerID">;
 
-interface FormComponentProps extends InjectedFormProps {
+interface FormComponentProps {
+  // interface FormComponentProps extends InjectedFormProps {
   dialogCloseHandler?: any;
   handleSubmit: any;
   children?: ReactNode;
+  submitting: boolean;
 }
 
 export type FormProps = FormComponentProps;

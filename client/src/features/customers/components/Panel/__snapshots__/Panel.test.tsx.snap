@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Panel /> renders and matches snapshot 1`] = `
+<Panel
+  customersCount={1}
+>
+  <div
+    className="Panel"
+  >
+    <div
+      className="date"
+    >
+      Oct 18th 19
+    </div>
+    <div
+      className="title"
+    >
+      Total: 
+      1
+    </div>
+    <withState(undefined)>
+      <Blueprint3.Button
+        className=""
+        onClick={[Function]}
+        text="Add customer"
+      >
+        <button
+          className="bp3-button"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          type="button"
+        >
+          <Blueprint3.Icon
+            key="leftIcon"
+          />
+          <span
+            className="bp3-button-text"
+            key="text"
+          >
+            Add customer
+          </span>
+          <Blueprint3.Icon
+            key="rightIcon"
+          />
+        </button>
+      </Blueprint3.Button>
+      <Blueprint3.Dialog
+        canOutsideClickClose={false}
+        icon="inbox"
+        isOpen={false}
+        onClose={[Function]}
+        title="Add Customer"
+      >
+        <Blueprint3.Overlay
+          autoFocus={true}
+          backdropProps={Object {}}
+          canEscapeKeyClose={true}
+          canOutsideClickClose={false}
+          className="bp3-overlay-scroll-container"
+          enforceFocus={true}
+          hasBackdrop={true}
+          icon="inbox"
+          isOpen={false}
+          lazy={true}
+          onClose={[Function]}
+          title="Add Customer"
+          transitionDuration={300}
+          transitionName="bp3-overlay"
+          usePortal={true}
+        />
+      </Blueprint3.Dialog>
+    </withState(undefined)>
+  </div>
+</Panel>
+`;

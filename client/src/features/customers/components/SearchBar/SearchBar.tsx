@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../../../hooks/react-redux.hooks";
 import { Button, Card, Elevation } from "@blueprintjs/core";
 
 import DateInputField from "../../../../components/DateInputField";
@@ -10,7 +10,7 @@ import { Props, UseSearch } from "./types";
 
 import Styles from "./SearchBar.module.scss";
 
-function SearchBar({ loading, customerRecords }: Props) {
+export function SearchBar({ loading, customerRecords }: Props) {
   const dispatch = useDispatch();
 
   const [first, last, birthday, handleChange] = useSearch();
@@ -29,31 +29,39 @@ function SearchBar({ loading, customerRecords }: Props) {
   return (
     <Card elevation={Elevation.ONE} className={Styles.SearchBar}>
       <h5>Advanced Search</h5>
-      <div className={Styles.formRow}>
-        <SearchField
-          caption="First name:"
-          Field={TextField}
-          value={first}
-          handleChange={(e: any) => handleChange(e.target.value, "first")}
-        />
-        <SearchField
-          caption="Last name:"
-          Field={TextField}
-          value={last}
-          handleChange={(e: any) => handleChange(e.target.value, "last")}
-        />
-        <SearchField
-          caption="Birthday:"
-          Field={DateInputField}
-          value={birthday}
-          handleChange={(v: any) => handleChange(v, "birthday")}
-        />
-      </div>
-      <div className={Styles.actionBar}>
-        <Button onClick={searchHandler} disabled={loading}>
-          Search
-        </Button>
-      </div>
+      <fieldset disabled={loading} aria-busy={loading}>
+        <div className={Styles.formRow}>
+          <SearchField
+            caption="First name:"
+            Field={TextField}
+            value={first}
+            handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange(e.target.value, "first")
+            }
+          />
+          <SearchField
+            caption="Last name:"
+            Field={TextField}
+            value={last}
+            handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange(e.target.value, "last")
+            }
+          />
+          <SearchField
+            caption="Birthday:"
+            Field={DateInputField}
+            value={birthday}
+            handleChange={(v: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange(v, "birthday")
+            }
+          />
+        </div>
+        <div className={Styles.actionBar}>
+          <Button onClick={searchHandler} disabled={loading}>
+            Search
+          </Button>
+        </div>
+      </fieldset>
     </Card>
   );
 }
