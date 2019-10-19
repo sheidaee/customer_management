@@ -46,7 +46,6 @@ function CustomerList({
       <>
         <CustomerDetails data={customerRecord} />
         <EditCustomer
-          data={customerRecord}
           initialValues={{
             customerID,
             first,

@@ -19,16 +19,14 @@ import {
 } from "./components/AddCustomer/types";
 import { CustomerObject } from "./types";
 
-const fetchList = () => (dispatch: Dispatch) => {
-  dispatch(fetchInit());
-  axios
-    .get("/customers")
-    .then(response => {
-      dispatch(fetchListComplete(response.data));
-    })
-    .catch(error => {
-      console.log("error");
-    });
+const fetchList = () => async (dispatch: Dispatch) => {
+  try {
+    dispatch(fetchInit());
+    const { data } = await axios.get("/customers");
+    dispatch(fetchListComplete(data));
+  } catch (error) {
+    console.log("error");
+  }
 };
 
 const addCustomer = ({
@@ -37,23 +35,19 @@ const addCustomer = ({
   gender,
   birthday,
   customerLifetimeValue
-}: AddCustomerP) => (dispatch: Dispatch) => {
-  return Promise.resolve(
-    axios
-      .post("/customers", {
-        first,
-        last,
-        gender,
-        birthday,
-        customerLifetimeValue
-      })
-      .then(response => {
-        dispatch(addCustomerComplete(response.data));
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  );
+}: AddCustomerP) => async (dispatch: Dispatch) => {
+  try {
+    const { data } = await axios.post("/customers", {
+      first,
+      last,
+      gender,
+      birthday,
+      customerLifetimeValue
+    });
+    dispatch(addCustomerComplete(data));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const editCustomer = ({
@@ -63,26 +57,21 @@ const editCustomer = ({
   gender,
   birthday,
   customerLifetimeValue
-}: CustomerP) => (dispatch: Dispatch) => {
-  return Promise.resolve(
-    axios
-      .put(`/customers/${customerID}`, {
-        first,
-        last,
-        gender,
-        birthday,
-        customerLifetimeValue
-      })
-      .then(response => {
-        const customer = response.data;
-        dispatch(editCustomerComplete({ ...customer }));
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  );
-};
+}: CustomerP) => async (dispatch: Dispatch) => {
+  try {
+    const { data: customer } = await axios.put(`/customers/${customerID}`, {
+      first,
+      last,
+      gender,
+      birthday,
+      customerLifetimeValue
+    });
 
+    dispatch(editCustomerComplete({ ...customer }));
+  } catch (error) {
+    console.log(error);
+  }
+};
 const deleteCustomer = (customerID: number) => (dispatch: Dispatch) =>
   axios
     .delete(`/customers/${customerID}`)

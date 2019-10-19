@@ -1,6 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import {
+  Formik,
+  FormikActions,
+  FormikProps,
+  Form,
+  Field,
+  FieldProps
+} from "formik";
 import { Button, Intent } from "@blueprintjs/core";
 
 import { customerOperations } from "../../";
@@ -13,6 +20,13 @@ import { DialogProps, BtnType } from "../../../../components/DialogBox/types";
 
 import Styles from "./EditCustomer.module.scss";
 import { FormValues, FormProps } from "./types";
+import {
+  RenderText,
+  RenderSelect,
+  RenderDate,
+  genderOptions
+} from "../../../../components/Form";
+import Fieldset from "../../../../components/Fieldset";
 
 const dialogProps: DialogProps = {
   btn: {
@@ -30,149 +44,118 @@ const dialogProps: DialogProps = {
   customOperationBtn: true
 };
 
-const createRenderer = (render: any) => ({
-  input,
-  meta,
-  label,
-  ...rest
-}: any) => (
-  <React.Fragment>
-    <div className={rest.captionClassName}>{label}</div>
-    <div
-      className={classNames(
-        rest.dataClassName,
-        "pt-form-group",
-        "pt-intent-danger"
-      )}
-    >
-      {render(input, label, meta.touched, meta.error, rest)}
-      <div className="pt-form-helper-text">
-        {meta.touched ? meta.error : ""}
-      </div>
-    </div>
-  </React.Fragment>
-);
-
-const RenderText = createRenderer(
-  (input: any, label: string, touched: boolean, error: any) => (
-    <TextField {...input} />
-  )
-);
-
-const RenderSelect = createRenderer(
-  (input: any, label: string, touched: boolean, error: any, rest: any) => (
-    <SelectField {...input} items={rest.items} />
-  )
-);
-
-const RenderDate = createRenderer(
-  (input: any, label: string, touched: boolean, error: any) => (
-    <DateInputField {...input} />
-  )
-);
-
-const options = [
-  { caption: "Male", value: "m" },
-  { caption: "Female", value: "f" }
-];
-
 /**
  * Edit customer form
  *
  */
-function EditCustomer({
-  handleSubmit,
-  submitting,
-  dialogCloseHandler
-}: FormProps) {
+function EditCustomer(props: FormProps) {
   const dispatch = useDispatch();
 
-  const editCustomerHandler = (formValues: FormValues) => {
-    return new Promise(async resolve => {
-      const {
+  const { dialogCloseHandler, initialValues } = props;
+
+  const editCustomerHandler = async (
+    formValues: FormValues,
+    actions: FormikActions<FormValues>
+  ) => {
+    const {
+      customerID,
+      first,
+      last,
+      gender,
+      birthday,
+      customerLifetimeValue
+    } = formValues;
+    dispatch(
+      await customerOperations.editCustomer({
         customerID,
         first,
         last,
         gender,
         birthday,
         customerLifetimeValue
-      } = formValues;
-
-      dispatch(
-        await customerOperations.editCustomer({
-          customerID,
-          first,
-          last,
-          gender,
-          birthday,
-          customerLifetimeValue
-        })
-      );
+      })
+    );
+    setTimeout(async () => {
+      actions.setSubmitting(false);
       await dialogCloseHandler();
-    });
+    }, 500);
   };
 
   return (
     <div className={Styles.EditCustomer}>
-      <form onSubmit={handleSubmit(editCustomerHandler)}>
-        <div className={Styles.row}>
-          <div>
-            <Field
-              name="first"
-              label="First name"
-              component={RenderText}
-              captionClassName={Styles.formCaption}
-              dataClassName={Styles.formData}
-            />
-          </div>
-          <div>
-            <Field
-              name="last"
-              label="Last name"
-              component={RenderText}
-              captionClassName={Styles.formCaption}
-              dataClassName={Styles.formData}
-            />
-          </div>
-        </div>
-        <div className={Styles.row}>
-          <div>
-            <Field
-              name="gender"
-              label="Gender"
-              component={RenderSelect}
-              captionClassName={Styles.formCaption}
-              dataClassName={Styles.formData}
-              items={options}
-            />
-          </div>
-          <div>
-            <Field
-              name="birthday"
-              label="Birthday"
-              component={RenderDate}
-              captionClassName={Styles.formCaption}
-              dataClassName={Styles.formData}
-            />
-          </div>
-        </div>
-        <div className={`pt-dialog-footer-actions ${Styles.actionBar}`}>
-          <Button text="close" onClick={dialogCloseHandler} />
-          <Button
-            text="save"
-            type="submit"
-            intent={Intent.PRIMARY}
-            disabled={submitting === true}
-          />
-        </div>
-      </form>
+      <Formik
+        initialValues={initialValues}
+        validate={validate}
+        onSubmit={editCustomerHandler}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting
+          /* and other goodies */
+        }) => (
+          <form onSubmit={handleSubmit}>
+            <Fieldset disabled={isSubmitting} aria-busy={isSubmitting}>
+              <div className={Styles.row}>
+                <div>
+                  <Field
+                    name="first"
+                    label="First name"
+                    component={RenderText}
+                    captionClassName={Styles.formCaption}
+                    dataClassName={Styles.formData}
+                  />
+                </div>
+                <div>
+                  <Field
+                    name="last"
+                    label="Last name"
+                    component={RenderText}
+                    captionClassName={Styles.formCaption}
+                    dataClassName={Styles.formData}
+                  />
+                </div>
+              </div>
+              <div className={Styles.row}>
+                <div>
+                  <Field
+                    name="gender"
+                    label="Gender"
+                    component={RenderSelect}
+                    captionClassName={Styles.formCaption}
+                    dataClassName={Styles.formData}
+                    items={genderOptions}
+                  />
+                </div>
+                <div>
+                  <Field
+                    name="birthday"
+                    label="Birthday"
+                    component={RenderDate}
+                    captionClassName={Styles.formCaption}
+                    dataClassName={Styles.formData}
+                  />
+                </div>
+              </div>
+              <div className={`pt-dialog-footer-actions ${Styles.actionBar}`}>
+                <Button text="close" onClick={dialogCloseHandler} />
+                <Button
+                  text="save"
+                  type="submit"
+                  intent={Intent.PRIMARY}
+                  disabled={isSubmitting === true}
+                />
+              </div>
+            </Fieldset>
+          </form>
+        )}
+      </Formik>
     </div>
   );
 }
 
-const EditCustomerC = reduxForm({
-  form: "EditCustomer",
-  validate
-})(EditCustomer);
-
-export default DialogBox(EditCustomerC, dialogProps);
+export default DialogBox(EditCustomer, dialogProps);

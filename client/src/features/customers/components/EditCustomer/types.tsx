@@ -1,4 +1,3 @@
-import { InjectedFormProps } from "redux-form";
 import { ReactNode } from "react";
 
 export interface FormValues {
@@ -10,10 +9,9 @@ export interface FormValues {
   customerLifetimeValue: number;
 }
 
-interface FormComponentProps extends InjectedFormProps {
+export interface FormProps {
+  initialValues: any;
   dialogCloseHandler?: any;
-  handleSubmit: any;
+  handleSubmit?: any;
   children?: ReactNode;
 }
-
-export type FormProps = FormComponentProps;
