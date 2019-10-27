@@ -2,9 +2,10 @@ import React from "react";
 import moment from "moment";
 import { DateInput } from "@blueprintjs/datetime";
 
-import { Props } from "./types";
+import { IProps } from "./types";
+import { withMemo } from "../../utilities/utility";
 
-function DateInputField({ placeholder, ...rest }: Props) {
+function DateInputField({ placeholder, value, onChange }: IProps) {
   const FORMATS = [
     {
       formatDate: (date: any) => date.toLocaleString(),
@@ -27,7 +28,7 @@ function DateInputField({ placeholder, ...rest }: Props) {
             .format()
         )
       }
-      {...rest}
+      {...{ value, onChange }}
     />
   );
 }
@@ -40,4 +41,4 @@ const momentFormatter = (format: string) => {
   };
 };
 
-export default DateInputField;
+export default withMemo(DateInputField, ["value"]);

@@ -1,5 +1,5 @@
 import { CustomerState } from "../../types";
 
-export interface CustomerP {
+export interface ICustomerP {
   app: CustomerState;
 }

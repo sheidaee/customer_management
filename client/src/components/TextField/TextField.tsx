@@ -1,10 +1,18 @@
 import React from "react";
 import { Classes } from "@blueprintjs/core";
 
-import { Props } from "./types";
+import { IProps } from "./types";
+import { withMemo } from "../../utilities/utility";
 
-function TextField(props: Props) {
-  return <input className={Classes.INPUT} type="text" dir="auto" {...props} />;
+function TextField({ value, onChange }: IProps) {
+  return (
+    <input
+      className={Classes.INPUT}
+      type="text"
+      dir="auto"
+      {...{ value, onChange }}
+    />
+  );
 }
 
-export default TextField;
+export default withMemo(TextField, ["value"]);

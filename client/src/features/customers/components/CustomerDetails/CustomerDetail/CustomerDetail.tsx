@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Props } from "./types";
+import { IProps } from "./types";
 
 import Styles from "./CustomerDetail.module.scss";
 
-const CustomerDetail = ({ caption, value }: Props) => {
+const CustomerDetail = ({ caption, value }: IProps) => {
   return (
     <div>
       <div className={Styles.formCaption}>{caption}:</div>

@@ -1,7 +1,7 @@
 import { CustomerObject } from "../../types";
 
-export type Props = {
+export interface IProps {
   dialogCloseHandler?: any;
   dialogSubmitHandler?: any;
   data: CustomerObject;
-};
+}

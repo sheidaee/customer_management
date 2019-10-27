@@ -1,7 +1,7 @@
 import { IconName } from "@blueprintjs/core";
 
-export type Props = {
+export interface IProps {
   icon: IconName;
   title?: string;
   onClick: () => void;
-};
+}

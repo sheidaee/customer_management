@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Props } from "./types";
+import { IProps } from "./types";
 
-const Fieldset = ({ className, children, ...otherProps }: Props) => (
+const Fieldset = ({ className, children, ...otherProps }: IProps) => (
   <fieldset {...otherProps} className={`fieldset ${className}`}>
     {children}
   </fieldset>

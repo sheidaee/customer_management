@@ -1,32 +1,19 @@
 import React from "react";
 import { useSelector, useDispatch } from "../../../../hooks/react-redux.hooks";
-import { Button, Intent } from "@blueprintjs/core";
-import {
-  Formik,
-  FormikActions,
-  FormikProps,
-  Form,
-  Field,
-  FieldProps
-} from "formik";
+import { Formik, FormikActions } from "formik";
+import wait from "waait";
 
 import { customerOperations } from "../../";
 import DialogBox from "../../../../components/DialogBox";
 import { validate } from "../../../../utilities/utility";
-import { FormValues, FormProps } from "./types";
+import { FormValues, IFormProps } from "./types";
 
-import { DialogProps, BtnType } from "../../../../components/DialogBox/types";
+import { IDialogProps, BtnType } from "../../../../components/DialogBox/types";
 
+import AddCustomerContent from "./AddCustomerContent";
 import Styles from "./AddCustomer.module.scss";
-import {
-  RenderText,
-  RenderSelect,
-  RenderDate,
-  genderOptions
-} from "../../../../components/Form";
-import Fieldset from "../../../../components/Fieldset/Fieldset";
 
-const dialogProps: DialogProps = {
+const dialogProps: IDialogProps = {
   btn: {
     btnType: BtnType.BUTTON,
     btnProps: {
@@ -42,7 +29,7 @@ const dialogProps: DialogProps = {
   customOperationBtn: true
 };
 
-export function AddCustomer(props: FormProps) {
+export function AddCustomer(props: IFormProps) {
   const dispatch = useDispatch();
   const loading = useSelector(({ app }: any) => app.loading);
 
@@ -61,10 +48,10 @@ export function AddCustomer(props: FormProps) {
       })
     );
 
-    setTimeout(async () => {
-      actions.setSubmitting(false);
-      await props.dialogCloseHandler();
-    }, 500);
+    await wait(500);
+
+    actions.setSubmitting(false);
+    await props.dialogCloseHandler();
   };
 
   const initialValues = {
@@ -74,6 +61,7 @@ export function AddCustomer(props: FormProps) {
     birthday: new Date(),
     customerLifetimeValue: (Math.random() * 100 + 1).toFixed(2)
   };
+
   return (
     <div className={Styles.Customer}>
       <Formik
@@ -89,50 +77,20 @@ export function AddCustomer(props: FormProps) {
           handleBlur,
           handleSubmit,
           isSubmitting
-          /* and other goodies */
         }) => (
-          <form onSubmit={handleSubmit}>
-            <Fieldset disabled={isSubmitting} aria-busy={isSubmitting}>
-              <div className={Styles.row}>
-                <div>
-                  <Field
-                    name="first"
-                    label="First name"
-                    component={RenderText}
-                  />
-                </div>
-                <div>
-                  <Field name="last" label="Last name" component={RenderText} />
-                </div>
-              </div>
-              <div className={Styles.row}>
-                <div>
-                  <Field
-                    name="gender"
-                    label="Gender"
-                    component={RenderSelect}
-                    items={genderOptions}
-                  />
-                </div>
-                <div>
-                  <Field
-                    name="birthday"
-                    label="Birthday"
-                    component={RenderDate}
-                  />
-                </div>
-              </div>
-              <div className={`pt-dialog-footer-actions ${Styles.actionBar}`}>
-                <Button text="close" onClick={props.dialogCloseHandler} />
-                <Button
-                  text="save"
-                  type="submit"
-                  intent={Intent.PRIMARY}
-                  disabled={isSubmitting === true || loading === true}
-                />
-              </div>
-            </Fieldset>
-          </form>
+          <AddCustomerContent
+            {...{
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting
+            }}
+            {...props}
+            loading={loading as boolean}
+          />
         )}
       </Formik>
     </div>

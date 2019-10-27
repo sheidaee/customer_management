@@ -1,3 +1,4 @@
+import { memo, ReactNode } from "react";
 import { Validate } from "./types";
 
 /**
@@ -93,4 +94,29 @@ export const validate = (values: Validate) => {
   if (!values.birthday) errors.birthday = "Please enter your birthday";
 
   return errors;
+};
+
+export const withMemo = (Component: ReactNode, checkedProps: any) => {
+  function areEqual(prevProps: any, nextProps: any) {
+    let isEqual = true;
+    // for (let i = 0; i < checkedProps.length; i++) {
+    //   const checkedProp = checkedProps[i];
+    //   if (
+    //     JSON.stringify(prevProps[checkedProp]) !==
+    //     JSON.stringify(nextProps[checkedProp])
+    //   ) {
+    //     isEqual = false;
+    //     break;
+    //   }
+    // }
+    checkedProps.forEach((prop: string) => {
+      if (prevProps[prop] !== nextProps[prop]) {
+        isEqual = false;
+        return;
+      }
+    });
+    return isEqual;
+  }
+
+  return memo(Component as any, areEqual);
 };

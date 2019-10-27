@@ -1,9 +1,9 @@
 import React from "react";
 import { TextArea } from "@blueprintjs/core";
 
-import { Props } from "./types";
+import { IProps } from "./types";
 
-function TextAreaField(props: Props) {
+function TextAreaField(props: IProps) {
   return <TextArea {...props} />;
 }
 

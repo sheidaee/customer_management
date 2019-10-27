@@ -1,34 +1,17 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import {
-  Formik,
-  FormikActions,
-  FormikProps,
-  Form,
-  Field,
-  FieldProps
-} from "formik";
-import { Button, Intent } from "@blueprintjs/core";
+import { useDispatch, useSelector } from "react-redux";
+import { Formik, FormikActions } from "formik";
 
 import { customerOperations } from "../../";
 import DialogBox from "../../../../components/DialogBox";
-import TextField from "../../../../components/TextField";
-import DateInputField from "../../../../components/DateInputField";
-import SelectField from "../../../../components/SelectField";
-import { classNames, validate } from "../../../../utilities/utility";
-import { DialogProps, BtnType } from "../../../../components/DialogBox/types";
+import { validate } from "../../../../utilities/utility";
+import { IDialogProps, BtnType } from "../../../../components/DialogBox/types";
 
 import Styles from "./EditCustomer.module.scss";
-import { FormValues, FormProps } from "./types";
-import {
-  RenderText,
-  RenderSelect,
-  RenderDate,
-  genderOptions
-} from "../../../../components/Form";
-import Fieldset from "../../../../components/Fieldset";
+import { FormValues, IFormProps } from "./types";
+import EditCustomerContent from "./EditCustomerContent";
 
-const dialogProps: DialogProps = {
+const dialogProps: IDialogProps = {
   btn: {
     btnType: BtnType.ICON,
     btnProps: {
@@ -48,8 +31,9 @@ const dialogProps: DialogProps = {
  * Edit customer form
  *
  */
-function EditCustomer(props: FormProps) {
+export function EditCustomer(props: IFormProps) {
   const dispatch = useDispatch();
+  const loading = useSelector(({ app }: any) => app.loading);
 
   const { dialogCloseHandler, initialValues } = props;
 
@@ -65,6 +49,7 @@ function EditCustomer(props: FormProps) {
       birthday,
       customerLifetimeValue
     } = formValues;
+
     dispatch(
       await customerOperations.editCustomer({
         customerID,
@@ -75,6 +60,7 @@ function EditCustomer(props: FormProps) {
         customerLifetimeValue
       })
     );
+
     setTimeout(async () => {
       actions.setSubmitting(false);
       await dialogCloseHandler();
@@ -98,60 +84,19 @@ function EditCustomer(props: FormProps) {
           isSubmitting
           /* and other goodies */
         }) => (
-          <form onSubmit={handleSubmit}>
-            <Fieldset disabled={isSubmitting} aria-busy={isSubmitting}>
-              <div className={Styles.row}>
-                <div>
-                  <Field
-                    name="first"
-                    label="First name"
-                    component={RenderText}
-                    captionClassName={Styles.formCaption}
-                    dataClassName={Styles.formData}
-                  />
-                </div>
-                <div>
-                  <Field
-                    name="last"
-                    label="Last name"
-                    component={RenderText}
-                    captionClassName={Styles.formCaption}
-                    dataClassName={Styles.formData}
-                  />
-                </div>
-              </div>
-              <div className={Styles.row}>
-                <div>
-                  <Field
-                    name="gender"
-                    label="Gender"
-                    component={RenderSelect}
-                    captionClassName={Styles.formCaption}
-                    dataClassName={Styles.formData}
-                    items={genderOptions}
-                  />
-                </div>
-                <div>
-                  <Field
-                    name="birthday"
-                    label="Birthday"
-                    component={RenderDate}
-                    captionClassName={Styles.formCaption}
-                    dataClassName={Styles.formData}
-                  />
-                </div>
-              </div>
-              <div className={`pt-dialog-footer-actions ${Styles.actionBar}`}>
-                <Button text="close" onClick={dialogCloseHandler} />
-                <Button
-                  text="save"
-                  type="submit"
-                  intent={Intent.PRIMARY}
-                  disabled={isSubmitting === true}
-                />
-              </div>
-            </Fieldset>
-          </form>
+          <EditCustomerContent
+            {...{
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting
+            }}
+            {...props}
+            loading={loading as boolean}
+          />
         )}
       </Formik>
     </div>

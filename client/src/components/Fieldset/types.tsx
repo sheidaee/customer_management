@@ -1,4 +1,4 @@
-export interface Props
+export interface IProps
   extends React.DetailedHTMLProps<
     React.FieldsetHTMLAttributes<HTMLFieldSetElement>,
     HTMLFieldSetElement

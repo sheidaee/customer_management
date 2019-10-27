@@ -7,14 +7,14 @@ import DeleteCustomer from "../DeleteCustomer";
 import EditCustomer from "../EditCustomer";
 import CustomerTable from "./CustomerTable/CustomerTable";
 import { CustomerObject } from "../../types";
-import { Props } from "./types";
+import { IProps } from "./types";
 
-function CustomerList({
+export function CustomerList({
   loading,
   didSearch,
   customerRecords,
   searchedRecords
-}: Props) {
+}: IProps) {
   const dispatch = useDispatch();
 
   useEffect(() => {

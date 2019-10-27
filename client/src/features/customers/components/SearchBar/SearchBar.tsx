@@ -5,13 +5,13 @@ import { Button, Card, Elevation } from "@blueprintjs/core";
 import DateInputField from "../../../../components/DateInputField";
 import TextField from "../../../../components/TextField";
 import { customerOperations } from "../../";
-import SearchField from "./SearchField/SearchField";
-import { Props, UseSearch } from "./types";
+import SearchField from "./SearchField";
+import { IProps, UseSearch } from "./types";
 
 import Styles from "./SearchBar.module.scss";
 import Fieldset from "../../../../components/Fieldset";
 
-export function SearchBar({ loading, customerRecords }: Props) {
+export function SearchBar({ loading, customerRecords }: IProps) {
   const dispatch = useDispatch();
 
   const [first, last, birthday, handleChange] = useSearch();

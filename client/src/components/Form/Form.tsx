@@ -38,7 +38,7 @@ export const RenderSelect = CustomInputComponent((input: any, rest: any) => (
 ));
 
 export const RenderDate = CustomInputComponent((input: any, rest: any) => (
-  <DateInputField {...input} />
+  <DateInputField {...input} {...rest} />
 ));
 
 export const genderOptions = [

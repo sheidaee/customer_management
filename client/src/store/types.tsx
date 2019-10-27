@@ -6,5 +6,4 @@ export type CustomerP = {
 
 export type ApplicationState = {
   app: any;
-  form: any;
 };

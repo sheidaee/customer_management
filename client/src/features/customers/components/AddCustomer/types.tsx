@@ -7,12 +7,29 @@ export interface FormValues {
   gender: string;
   birthday: string | Date;
   customerLifetimeValue: number | string;
+  loading?: boolean;
 }
 
 export type AddCustomerP = Omit<FormValues, "customerID">;
 
-export interface FormProps {
+export interface IFormikProps {
+  handleChange?: (e: React.ChangeEvent) => void;
+  handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleBlur?: (e: React.FocusEvent) => void;
+  setFieldValue?: (field: string, value: string) => void;
+  values?: FormValues;
+  options?: Array<{
+    code: string;
+    country: string;
+  }>;
+}
+
+export interface IFormProps {
   dialogCloseHandler?: any;
   handleSubmitHandler?: any;
   children?: ReactNode;
+  isSubmitting?: boolean;
+  loading?: boolean;
 }
+
+export type PropsWithFormik = IFormProps & IFormikProps;

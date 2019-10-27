@@ -1,6 +1,6 @@
 import React from "react";
 
-import { SearchField } from "./types";
+import { ISearchField } from "./types";
 import Styles from "./SearchField.module.scss";
 
 const SearchFieldC = ({
@@ -9,7 +9,7 @@ const SearchFieldC = ({
   value,
   handleChange,
   ...props
-}: SearchField) => {
+}: ISearchField) => {
   return (
     <div>
       <div className={Styles.formCaption}>{caption}</div>
