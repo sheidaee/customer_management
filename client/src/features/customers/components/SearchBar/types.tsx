@@ -1,9 +1,9 @@
 import { CustomerObject } from "../../types";
 
-export type Props = {
+export interface IProps {
   loading: boolean;
   customerRecords: CustomerObject[] | null;
-};
+}
 
 export type UseSearch = [
   string,

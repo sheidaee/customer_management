@@ -1,5 +1,5 @@
 import { CustomerObject } from "../../types";
 
-export interface Props {
+export interface IProps {
   data: CustomerObject;
 }

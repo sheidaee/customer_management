@@ -1,4 +1,4 @@
-export interface tableProps {
+export interface ITableProps {
   data: [];
   loading: boolean;
 }

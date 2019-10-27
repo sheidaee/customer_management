@@ -4,15 +4,15 @@ import { useSelector } from "react-redux";
 import Panel from "../Panel";
 import SearchBar from "../SearchBar";
 import CustomerList from "../CustomerList";
-import { CustomerP } from "./types";
+import { ICustomerP } from "./types";
 
 const CustomersManagement = () => {
-  const loading = useSelector(({ app }: CustomerP) => app.loading);
-  const customerRecords = useSelector(({ app }: CustomerP) => app.customers);
+  const loading = useSelector(({ app }: ICustomerP) => app.loading);
+  const customerRecords = useSelector(({ app }: ICustomerP) => app.customers);
   const searchedRecords = useSelector(
-    ({ app }: CustomerP) => app.searchedRecords
+    ({ app }: ICustomerP) => app.searchedRecords
   );
-  const didSearch = useSelector(({ app }: CustomerP) => app.didSearch);
+  const didSearch = useSelector(({ app }: ICustomerP) => app.didSearch);
 
   return (
     <>

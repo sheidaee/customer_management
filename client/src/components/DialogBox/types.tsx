@@ -22,7 +22,7 @@ interface Dialog {
   title: string;
 }
 
-export interface DialogProps {
+export interface IDialogProps {
   btn: Btn;
   dialog: Dialog;
   customOperationBtn: boolean;

@@ -3,12 +3,12 @@ import moment from "moment";
 
 import DialogBox from "../../../../components/DialogBox";
 import CustomerDetail from "./CustomerDetail/CustomerDetail";
-import { DialogProps, BtnType } from "../../../../components/DialogBox/types";
+import { IDialogProps, BtnType } from "../../../../components/DialogBox/types";
 
 import Styles from "./CustomerDetails.module.scss";
-import { Props } from "./types";
+import { IProps } from "./types";
 
-const dialogProps: DialogProps = {
+const dialogProps: IDialogProps = {
   btn: {
     btnType: BtnType.ICON,
     btnProps: {
@@ -23,7 +23,7 @@ const dialogProps: DialogProps = {
   customOperationBtn: true
 };
 
-const CustomerDetails = (props: Props) => {
+const CustomerDetails = (props: IProps) => {
   const {
     name: { first, last },
     gender,

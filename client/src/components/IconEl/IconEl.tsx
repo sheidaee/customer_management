@@ -1,8 +1,10 @@
 import React from "react";
 import { Icon } from "@blueprintjs/core";
 
-import { Props } from "./types";
+import { IProps } from "./types";
 
-const IconEl = (props: Props) => <Icon icon="globe" iconSize={20} {...props} />;
+const IconEl = (props: IProps) => (
+  <Icon icon="globe" iconSize={20} {...props} />
+);
 
 export default IconEl;

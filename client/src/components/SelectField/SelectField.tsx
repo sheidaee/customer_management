@@ -2,11 +2,11 @@ import React from "react";
 import { Classes } from "@blueprintjs/core";
 
 import { classNames } from "../../utilities";
-import { SelectItem, Props } from "./types";
+import { SelectItem, IProps } from "./types";
 
 import Styles from "./SelectField.module.scss";
 
-function SelectField(props: Props) {
+function SelectField(props: IProps) {
   const { name, items, ...rest } = props;
 
   return (

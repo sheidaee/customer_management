@@ -3,14 +3,14 @@ import { Button, Dialog, Intent } from "@blueprintjs/core";
 import { Subtract } from "utility-types";
 
 import IconEl from "../IconEl";
-import { DialogProps, BtnType } from "./types";
+import { IDialogProps, BtnType } from "./types";
 
 // These props will be subtracted from base component props
 interface InjectedProps {}
 
 const withDialogBox = <BaseProps extends InjectedProps>(
   _BaseComponent: React.ComponentType<BaseProps>,
-  dialogProps: DialogProps
+  dialogProps: IDialogProps
 ) => {
   // fix for TypeScript issues: https://github.com/piotrwitek/react-redux-typescript-guide/issues/111
   const BaseComponent = _BaseComponent as React.ComponentType<InjectedProps>;

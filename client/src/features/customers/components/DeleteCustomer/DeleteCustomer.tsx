@@ -4,12 +4,12 @@ import { Button, Intent } from "@blueprintjs/core";
 
 import DialogBox from "../../../../components/DialogBox";
 import { customerOperations } from "../../";
-import { DialogProps, BtnType } from "../../../../components/DialogBox/types";
-import { Props } from "./types";
+import { IDialogProps, BtnType } from "../../../../components/DialogBox/types";
+import { IProps } from "./types";
 
 import Styles from "./DeleteCustomer.module.scss";
 
-const dialogProps: DialogProps = {
+const dialogProps: IDialogProps = {
   btn: {
     btnType: BtnType.ICON,
     btnProps: {
@@ -24,7 +24,7 @@ const dialogProps: DialogProps = {
   customOperationBtn: true
 };
 
-function DeleteCustomer(props: Props) {
+function DeleteCustomer(props: IProps) {
   const [submitting, setSubmitting] = useState(false);
   const dispatch = useDispatch();
 

@@ -21,20 +21,16 @@ export const fetchListComplete = (
 
 export const editCustomerComplete = ({
   customerID,
-  firstName,
-  lastName,
+  name,
   gender,
   birthday,
   lastContact,
   customerLifetimeValue
-}: CustomerShape): CustomerActionTypes =>
+}: CustomerObject): CustomerActionTypes =>
   action(customerActionNameTypes.EDIT_CUSTOMER_COMPLETED, {
     customer: {
       customerID,
-      name: {
-        first: firstName,
-        last: lastName
-      },
+      name,
       birthday,
       gender,
       lastContact,

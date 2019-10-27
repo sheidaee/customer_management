@@ -1,4 +1,4 @@
-export type Props = {
+export interface IProps {
   caption: string;
   value: string | number;
-};
+}

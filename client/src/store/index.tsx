@@ -1,5 +1,4 @@
 import { Store, createStore, applyMiddleware, combineReducers } from "redux";
-import { reducer as form } from "redux-form";
 
 // We'll be using Redux Devtools. We can use the `composeWithDevTools()`
 // directive so we can pass our middleware along with it
@@ -14,8 +13,7 @@ import { customerReducer } from "../features/customers/reducers";
 import { ApplicationState, CustomerP } from "./types";
 
 const rootReducer = combineReducers<ApplicationState>({
-  app: customerReducer,
-  form
+  app: customerReducer
 });
 
 // Whenever an action is dispatched, Redux will update each top-level application state property

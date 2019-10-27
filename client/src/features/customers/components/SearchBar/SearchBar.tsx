@@ -5,12 +5,13 @@ import { Button, Card, Elevation } from "@blueprintjs/core";
 import DateInputField from "../../../../components/DateInputField";
 import TextField from "../../../../components/TextField";
 import { customerOperations } from "../../";
-import SearchField from "./SearchField/SearchField";
-import { Props, UseSearch } from "./types";
+import SearchField from "./SearchField";
+import { IProps, UseSearch } from "./types";
 
 import Styles from "./SearchBar.module.scss";
+import Fieldset from "../../../../components/Fieldset";
 
-export function SearchBar({ loading, customerRecords }: Props) {
+export function SearchBar({ loading, customerRecords }: IProps) {
   const dispatch = useDispatch();
 
   const [first, last, birthday, handleChange] = useSearch();
@@ -29,7 +30,7 @@ export function SearchBar({ loading, customerRecords }: Props) {
   return (
     <Card elevation={Elevation.ONE} className={Styles.SearchBar}>
       <h5>Advanced Search</h5>
-      <fieldset disabled={loading} aria-busy={loading}>
+      <Fieldset disabled={loading} aria-busy={loading}>
         <div className={Styles.formRow}>
           <SearchField
             caption="First name:"
@@ -61,7 +62,7 @@ export function SearchBar({ loading, customerRecords }: Props) {
             Search
           </Button>
         </div>
-      </fieldset>
+      </Fieldset>
     </Card>
   );
 }
