@@ -1,0 +1,30 @@
+.Customer {
+  font-size: 1.5rem;
+  padding: 1.4rem;
+}
+
+.formCaption {
+  margin-bottom: 1rem;
+}
+
+.formData {
+  padding-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  :not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.row > div {
+  flex-basis: 45%;
+}
+
+.actionBar button:not(:last-child) {
+  margin-right: 1rem;
+}
