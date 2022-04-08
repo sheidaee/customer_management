@@ -16,7 +16,7 @@
     "formik": "^1.5.8",
     "lodash": "^4.17.15",
     "match-sorter": "^4.0.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-redux": "^7.1.1",
