@@ -2,6 +2,9 @@
   "name": "customer-management-app-client",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=12.22.12"
+  },
   "dependencies": {
     "@blueprintjs/core": "^3.18.1",
     "@blueprintjs/datetime": "^3.13.0",
